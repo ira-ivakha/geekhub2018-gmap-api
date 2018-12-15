@@ -3,19 +3,50 @@
 
 <head>
     <meta charset="utf-8">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+            position: relative;
+        }
+        .input-form {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background: white;
+            text-align: center;
+            z-index: 5;
+            border-bottom: 1px solid #ccc;
+        }
+        input {
+            -webkit-appearance: none;
+            border-radius: 30px;
+            padding: 7px 12px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+    </style>
 </head>
 
 <body>
-<input type="text" id="text_address" placeholder="Enter address">
-<button onclick="getAddress()">Знайти</button>
+<form class="input-form" id="form_address">
+    <input type="text" class="input-text" id="text_address" placeholder="Enter address">
+    <input type="submit" class="input-btn" id="btn_address" value="Знайти">
+</form>
 
-<div id="map" style="min-height: 90vh;"></div>
-<!--<script-->
-        <!--src="https://code.jquery.com/jquery-3.3.1.min.js"-->
-        <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="-->
-        <!--crossorigin="anonymous"></script>-->
+<div id="map" style="min-height: 100vh;"></div>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 <script>
-	function getAddress() {
+    document.getElementById("form_address").addEventListener("submit", getAddress);
+	function getAddress(e) {
+		e.preventDefault();
 		var addressString = document.getElementById('text_address').value.replace(' ', '+');
 
 		console.log(addressString);
